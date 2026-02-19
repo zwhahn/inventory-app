@@ -1,4 +1,4 @@
-const { get } = require("../routes/indexRouter");
+const { get } = require("../routes/productsRouter");
 const pool = require("./pool");
 
 async function getAllProducts() {

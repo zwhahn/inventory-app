@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const indexRouter = require("./routes/indexRouter");
+const productsRouter = require("./routes/productsRouter");
 const categoriesRouter = require("./routes/categoryRouter");
 const path = require("node:path");
 
@@ -11,7 +11,7 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
 app.use("/categories", categoriesRouter);
-app.use("/", indexRouter);
+app.use("/", productsRouter);
 
 const PORT = 3000;
 

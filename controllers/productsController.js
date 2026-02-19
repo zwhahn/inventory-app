@@ -3,7 +3,7 @@ const db = require("../db/queries");
 async function getAllProducts(req, res) {
   try {
     const products = await db.getAllProducts();
-    res.render("index", {
+    res.render("products", {
       items: products,
     });
   } catch (err) {
