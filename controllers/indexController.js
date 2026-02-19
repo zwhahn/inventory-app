@@ -7,8 +7,8 @@ async function getAllProducts(req, res) {
       items: products,
     });
   } catch (err) {
-    console.error("Error fetching messages: ", err);
-    res.status(500).send("Error loading messages");
+    console.error("Error fetching items: ", err);
+    res.status(500).send("Error loading items");
   }
 }
 

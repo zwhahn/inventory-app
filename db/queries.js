@@ -7,4 +7,10 @@ async function getAllProducts() {
   return rows;
 }
 
-module.exports = { getAllProducts };
+async function getAllCategories() {
+  const { rows } = await pool.query("SELECT * FROM categories");
+  console.log("rows: ", rows);
+  return rows;
+}
+
+module.exports = { getAllProducts, getAllCategories };
