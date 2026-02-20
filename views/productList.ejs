@@ -10,18 +10,18 @@
       <thead>
         <tr>
           <th>Item</th>
-          <th>Category ID</th>
           <th>Quantity</th>
           <th>Price (USD)</th>
+          <th>Category ID</th>
         </tr>
       </thead>
       <tbody>
         <% products.forEach(products => { %>
           <tr>
             <td><%= products.name %></td>
-            <td><%= products.category_id %></td>
             <td><%= products.stock_quantity %></td>
             <td>$<%= products.price %></td>
+            <td><%= products.category_id %></td>
           </tr>
         <% }); %>
       </tbody>
