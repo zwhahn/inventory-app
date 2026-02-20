@@ -47,9 +47,20 @@ async function getCategoryNameById(categoryId) {
   return rows[0].category;
 }
 
+async function deleteProduct(productId) {
+  await pool.query(
+    `
+    DELETE FROM items
+    WHERE id = $1
+    `,
+    [productId],
+  );
+}
+
 module.exports = {
   getAllProducts,
   getAllCategories,
   getProductsByCategoryId,
   getCategoryNameById,
+  deleteProduct,
 };

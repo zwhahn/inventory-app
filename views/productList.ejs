@@ -13,15 +13,24 @@
           <th>Quantity</th>
           <th>Price (USD)</th>
           <th>Category ID</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <% products.forEach(products => { %>
+        <% products.forEach(product => { %>
           <tr>
-            <td><%= products.name %></td>
-            <td><%= products.stock_quantity %></td>
-            <td>$<%= products.price %></td>
-            <td><%= products.category_id %></td>
+            <td><%= product.name %></td>
+            <td><%= product.stock_quantity %></td>
+            <td>$<%= product.price %></td>
+            <td><%= product.category_id %></td>
+            <td>
+              <div>
+                <button>Edit</button>
+                <a href="/products/delete/<%= product.category_id %>/<%= product.id %>">
+                  <button>Delete</button>
+                </a>
+              </div>
+            </td>
           </tr>
         <% }); %>
       </tbody>

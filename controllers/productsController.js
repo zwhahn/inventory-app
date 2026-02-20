@@ -29,4 +29,10 @@ async function getProductsByCategoryId(req, res) {
   });
 }
 
-module.exports = { getAllProducts, getProductsByCategoryId };
+async function deleteProduct(req, res) {
+  const { categoryId, productId } = req.params;
+  await db.deleteProduct(Number(productId));
+  res.redirect(`/products/${categoryId}`);
+}
+
+module.exports = { getAllProducts, getProductsByCategoryId, deleteProduct };

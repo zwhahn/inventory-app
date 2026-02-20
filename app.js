@@ -11,6 +11,7 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
 app.use("/products", productsRouter);
+
 app.use("/", categoriesRouter);
 
 const PORT = 3000;
