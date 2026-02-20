@@ -5,6 +5,7 @@
   </head>
   <body>
     <h1>Inventory App</h1>
+    <a href="/categories"><button>Categories</button></a>
     <table>
       <thead>
         <tr>
@@ -25,12 +26,5 @@
         <% }); %>
       </tbody>
     </table>
-    <ul>
-      <% items.forEach(item => { %>
-        <li>
-          <%= item.name %>
-        </li>
-      <% }); %>
-    </ul>
   </body>
 </html>

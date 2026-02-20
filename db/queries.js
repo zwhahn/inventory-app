@@ -13,4 +13,16 @@ async function getAllCategories() {
   return rows;
 }
 
-module.exports = { getAllProducts, getAllCategories };
+async function getProductsByCategoryId(categoryId) {
+  const { rows } = await pool.query(
+    `
+    SELECT * FROM items
+    WHERE category_id = $1
+    `,
+    [categoryId],
+  );
+  console.log("productsById: ", rows);
+  return rows;
+}
+
+module.exports = { getAllProducts, getAllCategories, getProductsByCategoryId };

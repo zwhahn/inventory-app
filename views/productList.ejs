@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Inventory App</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1>CategoryId: <%= categoryId %> </h1>
+    <a href="/"><button>Home</button></a>
+    <ul>
+      <% products.forEach(product => { %>
+        <li>
+          <%= product.name %>
+        </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

@@ -5,11 +5,15 @@
   </head>
   <body>
     <h1>Cateogories</h1>
+    <a href="/"><button>Products</button></a>
     <ul>
       <% categories.forEach(category => { %>
-        <li>
-          <%= category.category %>
-        </li>
+        <% console.log("categoryId: ", category.id)%>
+        <a href=<%=`/categories/${category.id}`%>>
+          <li>
+            <%= category.category %>
+          </li>
+        </a>
       <% }); %>
     </ul>
   </body>
