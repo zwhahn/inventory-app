@@ -17,6 +17,7 @@ async function getProductsByCategoryId(req, res) {
 
   console.log("categoryId @ Controller: ", categoryId);
 
+  const categoryName = await db.getCategoryNameById(Number(categoryId));
   const categoryProducts = await db.getProductsByCategoryId(Number(categoryId));
 
   if (!categoryId) {
@@ -25,7 +26,7 @@ async function getProductsByCategoryId(req, res) {
   }
 
   res.render("productList", {
-    categoryId: categoryId,
+    categoryName: categoryName,
     products: categoryProducts,
   });
 }

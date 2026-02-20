@@ -25,4 +25,22 @@ async function getProductsByCategoryId(categoryId) {
   return rows;
 }
 
-module.exports = { getAllProducts, getAllCategories, getProductsByCategoryId };
+async function getCategoryNameById(categoryId) {
+  const { rows } = await pool.query(
+    `
+    SELECT category
+    FROM categories
+    WHERE id = $1
+    `,
+    [categoryId],
+  );
+  console.log("categoryName: ", rows[0].category);
+  return rows[0].category;
+}
+
+module.exports = {
+  getAllProducts,
+  getAllCategories,
+  getProductsByCategoryId,
+  getCategoryNameById,
+};
