@@ -2,12 +2,25 @@ const { get } = require("../routes/productsRouter");
 const pool = require("./pool");
 
 async function getAllProducts() {
-  const { rows } = await pool.query("SELECT * FROM items");
+  const { rows } = await pool.query(`
+    SELECT 
+      items.name,
+      items.stock_quantity,
+      items.price,
+      categories.category AS category_name
+    FROM items
+    JOIN categories
+    ON categories.id = items.category_id
+
+  `);
   return rows;
 }
 
 async function getAllCategories() {
-  const { rows } = await pool.query("SELECT * FROM categories");
+  const { rows } = await pool.query(`
+    SELECT * 
+    FROM categories
+    `);
   return rows;
 }
 
