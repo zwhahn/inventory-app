@@ -5,11 +5,10 @@
   </head>
   <body>
     <h1>Cateogories</h1>
-    <a href="/"><button>Products</button></a>
+    <a href="/products"><button>Products</button></a>
     <ul>
       <% categories.forEach(category => { %>
-        <% console.log("categoryId: ", category.id)%>
-        <a href=<%=`/categories/${category.id}`%>>
+        <a href=<%=`/products/${category.id}`%>>
           <li>
             <%= category.category %>
           </li>
