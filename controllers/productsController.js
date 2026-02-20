@@ -15,8 +15,6 @@ async function getAllProducts(req, res) {
 async function getProductsByCategoryId(req, res) {
   const { categoryId } = req.params;
 
-  console.log("categoryId @ Controller: ", categoryId);
-
   const categoryName = await db.getCategoryNameById(Number(categoryId));
   const categoryProducts = await db.getProductsByCategoryId(Number(categoryId));
 
