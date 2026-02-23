@@ -43,10 +43,17 @@ async function getProductById(req, res) {
   });
 }
 
-async function updateProductInformation(req, res) {
+async function updateProduct(req, res) {
   const { productId } = req.params;
   const { name, description, stock_quantity, price, category_id } = req.body;
-  await db.updateProductInformation(
+  console.log("Update product: ", {
+    name,
+    description,
+    stock_quantity,
+    price,
+    category_id,
+  });
+  await db.updateProduct(
     productId,
     name,
     description,
@@ -54,6 +61,8 @@ async function updateProductInformation(req, res) {
     Number(price),
     Number(category_id),
   );
+
+  res.redirect(`/products/${category_id}`);
 }
 
 async function deleteProduct(req, res) {
@@ -67,4 +76,5 @@ module.exports = {
   getProductsByCategoryId,
   getProductById,
   deleteProduct,
+  updateProduct,
 };

@@ -59,6 +59,29 @@ async function getProductById(productId) {
   return rows;
 }
 
+async function updateProduct(
+  id,
+  name,
+  description,
+  stock_quantity,
+  price,
+  category_id,
+) {
+  await pool.query(
+    `
+    UPDATE items
+    SET 
+      name = $1,
+      description = $2,
+      price = $3,
+      stock_quantity = $4,
+      category_id = $5
+    WHERE id = $6
+    `,
+    [name, description, price, stock_quantity, category_id, id],
+  );
+}
+
 async function deleteProduct(productId) {
   await pool.query(
     `
@@ -75,5 +98,6 @@ module.exports = {
   getProductsByCategoryId,
   getCategoryNameById,
   getProductById,
+  updateProduct,
   deleteProduct,
 };
