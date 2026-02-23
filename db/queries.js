@@ -47,6 +47,18 @@ async function getCategoryNameById(categoryId) {
   return rows[0].category;
 }
 
+async function getProductById(productId) {
+  const { rows } = await pool.query(
+    `
+    SELECT *
+    FROM items
+    WHERE id = $1
+    `,
+    [productId],
+  );
+  return rows;
+}
+
 async function deleteProduct(productId) {
   await pool.query(
     `
@@ -62,5 +74,6 @@ module.exports = {
   getAllCategories,
   getProductsByCategoryId,
   getCategoryNameById,
+  getProductById,
   deleteProduct,
 };
