@@ -31,28 +31,45 @@ async function getProductsByCategoryId(req, res) {
 
 async function getProductById(req, res) {
   const { productId } = req.params;
-  const product = await db.getProductById(Number(productId));
   const categories = await db.getAllCategories();
+
+  // Handle "new" state
+  if (!productId) {
+    res.render("form", {
+      product: "",
+      categories: categories,
+    });
+  }
+
+  const rows = await db.getProductById(Number(productId));
+  const product = rows[0];
+
   if (!product) {
     console.log("Error: could not find product with product Id: ", productId);
   }
-  console.log("product: ", product);
+
   res.render("form", {
-    product: product[0],
+    product: product,
     categories: categories,
   });
+}
+
+async function createProduct(req, res) {
+  const { name, description, stock_quantity, price, category_id } = req.body;
+  await db.createProduct(
+    name,
+    description,
+    Number(stock_quantity),
+    Number(price),
+    Number(category_id),
+  );
+
+  res.redirect(`/products/${category_id}`);
 }
 
 async function updateProduct(req, res) {
   const { productId } = req.params;
   const { name, description, stock_quantity, price, category_id } = req.body;
-  console.log("Update product: ", {
-    name,
-    description,
-    stock_quantity,
-    price,
-    category_id,
-  });
   await db.updateProduct(
     productId,
     name,
@@ -75,6 +92,7 @@ module.exports = {
   getAllProducts,
   getProductsByCategoryId,
   getProductById,
-  deleteProduct,
+  createProduct,
   updateProduct,
+  deleteProduct,
 };

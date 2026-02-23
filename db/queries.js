@@ -82,6 +82,29 @@ async function updateProduct(
   );
 }
 
+async function createProduct(
+  name,
+  description,
+  stock_quantity,
+  price,
+  category_id,
+) {
+  await pool.query(
+    `
+    INSERT INTO items (
+      name, 
+      description, 
+      price, 
+      stock_quantity, 
+      category_id
+    )
+    VALUES 
+      ($1, $2, $3, $4, $5)
+    `,
+    [name, description, price, stock_quantity, category_id],
+  );
+}
+
 async function deleteProduct(productId) {
   await pool.query(
     `
@@ -99,5 +122,6 @@ module.exports = {
   getCategoryNameById,
   getProductById,
   updateProduct,
+  createProduct,
   deleteProduct,
 };

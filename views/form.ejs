@@ -4,19 +4,22 @@
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <h1>Edit: <%= product.name %></h1>
-    <form method="POST" action="/products/edit/<%= product.id%>">
+    <h1><%= product ? "Editing: " : "Add New Product"%><%= product.name %></h1>
+    <form 
+      method="POST" 
+      action: <%= product ? '/products/edit/' + product.id : 'products/new' %>
+      >
       <label for="name">Item:</label>
-      <input type="text" id="name" name="name" value="<%=product.name%>"/>
+      <input type="text" id="name" name="name" value="<%= product ? product.name : ''%>"/>
 
       <label for="description">Description:</label>
-      <input type="text" id="description" name="description" value="<%=product.description%>"/>
+      <input type="text" id="description" name="description" value="<%=product ? product.description : ''%>"/>
 
       <label for="stock_quantity">Stock Quantity:</label>
-      <input type="number" min="0" step="1" id="stock_quantity" name="stock_quantity" value="<%=product.stock_quantity%>" />
+      <input type="number" min="0" step="1" id="stock_quantity" name="stock_quantity" value="<%=product ? product.stock_quantity : ''%>" />
 
       <label for="price">Price (USD):</label>
-      <input type="number" step="0.01" min="0" id="price" name="price" value="<%=product.price%>"/>
+      <input type="number" step="0.01" min="0" id="price" name="price" value="<%=product ? product.price : ''%>"/>
 
       <label for="category">Category:</label>
       <select name="category_id" id="category_id">
@@ -28,7 +31,9 @@
           <%= category.category %></option>
         <% }) %>
       </select>
-      <button type="submit">Update</button>
+      <button type="submit">
+        <%= product ? "Save Changes" : "Add Product"%>
+      </button>
     </form>
   </body>
 </html>
